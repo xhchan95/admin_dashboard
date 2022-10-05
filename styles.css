@@ -13,9 +13,9 @@
   --nav-color-2: #62daff6e;
   --blue-1: #084c61;
   --avatar: url("https://github.com/xhchan95.png");
-  --avatar2: url("https://githubcom/james.png");
-  --avatar3: url("https://githubcom/bob.png");
-  --avatar4: url("https://githubcom/alice.png");
+  --avatar2: url("https://github.com/james.png");
+  --avatar3: url("https://github.com/bob.png");
+  --avatar4: url("https://github.com/alice.png");
   --content-gray: rgb(235, 235, 235);
   --transition-notDrawer: margin-left 0.4s ease-in;
   --transition-drawer: width 0.4s ease-in;
@@ -28,7 +28,7 @@ body {
   grid-template-areas:
     "drawer nav nav nav"
     "drawer content content content";
-  grid-template-rows: 0.8fr 4fr;
+  grid-template-rows: 0.6fr 4fr;
   grid-template-columns: 5rem 1fr 1fr 1fr;
 }
 
@@ -48,11 +48,11 @@ body {
 
 .menuItem > h1 {
   display: none;
-  margin-left: 5%;
+  margin-left: 2rem;
 }
 
 .drawer:hover > .menuItem > h1 {
-  display: inline;
+  display: flex;
 }
 
 .drawer:hover ~ .navbar,
@@ -72,15 +72,19 @@ body {
   cursor: pointer;
 }
 
-.drawer > div:not(:first-child) > * {
-  padding: 1vw 0.1vw 0.1vw 0vw;
-  font-size: calc(20px + 0.2vw);
-  padding-left: 2px;
+a {
+  text-decoration: none;
 }
 
-.drawer > div:not(:first-child) > img {
+.drawer > *:not(:first-child) > * {
+  padding: 1rem 0.5rem 0.5rem 1rem;
+  font-size: 22px;
+  padding-left: 20px;
+}
+
+.drawer > *:not(:first-child) > img {
   width: calc(20px + 0.5vw);
-  width: calc(20px + 0.5vw);
+  height: calc(20px + 0.5vw);
 }
 
 .drawer > div:nth-child(8) {
@@ -100,13 +104,17 @@ body {
   padding-left: 10px;
   padding-top: 10px;
 }
+
 /* navbar styling */
+
 .navbar {
   grid-area: nav;
   transition: var(--transition-notDrawer);
   background-color: var(--nav-bg-1);
   padding: 1.5rem 3rem;
   border-bottom: 2px solid rgb(219, 219, 219);
+  position: sticky;
+  top: 0;
 }
 
 .topNav {
@@ -139,7 +147,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   font-size: 1.2rem;
-  font-weight: 880;
+  font-weight: 800;
 }
 
 .avatar {
@@ -151,11 +159,6 @@ body {
   margin: 0 1rem 0 2.5rem;
   height: 40px;
   width: 40px;
-}
-
-.content {
-  grid-area: content;
-  transition: var(--transition-notDrawer);
 }
 
 img {
@@ -198,4 +201,177 @@ img {
 
 .btn {
   background-color: var(--drawer-color);
+  color: var(--text-secondary);
+  font-weight: 800;
+  padding: 0.5rem 1.8rem;
+  border-radius: 7px;
+  font-size: 20px;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+/* main content */
+
+.content {
+  grid-area: content;
+  transition: var(--transition-notDrawer);
+  background-color: var(--content-gray);
+  display: grid;
+  padding: 2rem;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: min-content 1fr;
+  gap: 2rem;
+  grid-template-areas:
+    "projects announcements"
+    "projects trending";
+}
+
+.content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.projects {
+  grid-area: projects;
+}
+
+.projects .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 250px;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.projects .card {
+  background-color: var(--nav-color-2);
+  border-left: 10px solid rgb(246, 174, 39);
+  display: flex;
+  flex-direction: column;
+}
+
+.projects .card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.projects .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.projects .icons {
+  margin-top: auto;
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.4rem;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+.card {
+  background-color: rgb(45, 187, 187, 459);
+  padding: 2rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 /0.1);
+  max-width: 30vw;
+}
+
+.announcements {
+  grid-area: announcements;
+}
+
+.announcement {
+  width: 25ch;
+  padding: 1rem 0;
+}
+
+.announcement:first-child {
+  padding-top: 0;
+}
+
+.announcement:last-child {
+  padding-bottom: 0;
+}
+
+.announcement h5 {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.announcement p {
+  font-size: 0.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.announcement + .announcement {
+  border-top: rgb(115, 115, 115) 1px solid;
+}
+
+.trending {
+  grid-area: trending;
+}
+
+.trending .card {
+  padding: 1.5rem;
+}
+
+.trend {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.trend + .trend {
+  margin-top: 1.5rem;
+}
+
+.trend .account {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.trend .username {
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+}
+
+.trend-1 .avatar2 {
+  background: var(--avatar) center center / cover no-repeat;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.trend-2 .avatar {
+  background: var(--avatar) center center / cover no-repeat;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.trend-3 .avatar3 {
+  background: var(--avatar) center center / cover no-repeat;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.trend-4 .avatar4 {
+  background: var(--avatar) center center / cover no-repeat;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
